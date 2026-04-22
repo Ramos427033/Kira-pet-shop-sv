@@ -1,137 +1,153 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kira Pet Shop</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kira Pet Shop</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-b from-green-50 via-white to-orange-50"><div class="max-w-5xl mx-auto p-4">  <h1 class="text-4xl font-bold text-center mb-2">🐾 Kira Pet Shop</h1>
-  <p class="text-center text-gray-600 mb-6">Envíos a domicilio • Pago contra entrega</p>  <!-- SELECT PRODUCT -->  <div class="bg-white p-5 rounded-2xl shadow mb-6">
-    <h2 class="font-bold text-xl mb-3">Agregar producto</h2><select id="producto" class="w-full border p-3 rounded-xl mb-3">
-<!-- NUPEC -->
-<option value="Nupec Cachorro Raza Pequeña 2kg|20.99">Nupec Cachorro Raza Pequeña 2kg - $20.99</option>
-<option value="Nupec Cachorro Raza Pequeña 8kg|73.99">Nupec Cachorro Raza Pequeña 8kg - $73.99</option>
 
-<option value="Nupec Cachorro Raza Grande 2kg|20.99">Nupec Cachorro Raza Grande 2kg - $20.99</option>
-<option value="Nupec Cachorro Raza Grande 8kg|68.99">Nupec Cachorro Raza Grande 8kg - $68.99</option>
-<option value="Nupec Cachorro Raza Grande 20kg|144.99">Nupec Cachorro Raza Grande 20kg - $144.99</option>
+<body class="bg-gray-100">
 
-<option value="Nupec Adulto Raza Pequeña 2kg|18.99">Nupec Adulto Raza Pequeña 2kg - $18.99</option>
-<option value="Nupec Adulto Raza Pequeña 8kg|66.99">Nupec Adulto Raza Pequeña 8kg - $66.99</option>
+<div class="max-w-6xl mx-auto p-4">
 
-<option value="Nupec Adulto Raza Grande 2kg|17.99">Nupec Adulto Raza Grande 2kg - $17.99</option>
-<option value="Nupec Adulto Raza Grande 8kg|61.99">Nupec Adulto Raza Grande 8kg - $61.99</option>
-<option value="Nupec Adulto Raza Grande 20kg|119.99">Nupec Adulto Raza Grande 20kg - $119.99</option>
+<h1 class="text-3xl font-bold text-center mb-2">🐾 Kira Pet Shop</h1>
+<p class="text-center text-gray-600 mb-6">Envíos a domicilio • Pago contra entrega</p>
 
-<option value="Nupec Senior Raza Grande 2kg|25.99">Nupec Senior Raza Grande 2kg - $25.99</option>
-<option value="Nupec Senior Raza Grande 8kg|79.99">Nupec Senior Raza Grande 8kg - $79.99</option>
-<option value="Nupec Senior Raza Pequeña 2kg|25.99">Nupec Senior Raza Pequeña 2kg - $25.99</option>
+<div id="productos"></div>
 
-<option value="Nupec 1st Care Todas las Razas 2kg|21.99">Nupec 1st Care Todas las Razas 2kg - $21.99</option>
+<!-- CARRITO -->
+<div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 border-t">
+  <div class="flex justify-between items-center">
+    <p class="font-bold">🛒 Total: $<span id="total">0.00</span></p>
+    <button onclick="enviarPedido()" class="bg-green-600 text-white px-4 py-2 rounded-xl">
+      WhatsApp
+    </button>
+  </div>
+</div>
 
-<option value="Nupec Control de Peso Raza Grande 2kg|23.99">Nupec Control de Peso Raza Grande 2kg - $23.99</option>
-<option value="Nupec Control de Peso Raza Grande 8kg|84.99">Nupec Control de Peso Raza Grande 8kg - $84.99</option>
+</div>
 
-<option value="Nupec Sensitive Raza Grande 2kg|24.99">Nupec Sensitive Raza Grande 2kg - $24.99</option>
-<option value="Nupec Sensitive Raza Grande 8kg|84.99">Nupec Sensitive Raza Grande 8kg - $84.99</option>
-<option value="Nupec Sensitive Raza Pequeña 2kg|25.99">Nupec Sensitive Raza Pequeña 2kg - $25.99</option>
+<script>
 
-<option value="Nupec Gato Adulto 3kg|28.99">Nupec Gato Adulto 3kg - $28.99</option>
-<option value="Nupec Kitten 1.5kg|16.99">Nupec Kitten 1.5kg - $16.99</option>
-  <option value="Diamond Naturals Adult 2kg|13.99">Diamond Naturals 2kg - $13.99</option>
-  <option value="Diamond Naturals Adult 15kg|77.99">Diamond Naturals 15kg - $77.99</option>
+const data = [
 
-  <option value="Taste Of The Wild Smoked Salmon 2kg|21.99">Taste Of The Wild Smoked Salmon 2kg - $21.99</option>
-  <option value="Taste Of The Wild Smoked Salmon 5.6kg|55.99">Taste Of The Wild Smoked Salmon 5.6kg - $55.99</option>
-  <option value="Taste Of The Wild Smoked Salmon 12.2kg|89.99">Taste Of The Wild Smoked Salmon 12.2kg - $89.99</option>
+{
+titulo: "Taste Of The Wild",
+productos: [
+{name:"Salmon 2kg", precio:21.99},
+{name:"Salmon 5.6kg", precio:55.99},
+{name:"Salmon 12.2kg", precio:89.99},
+{name:"Bison 2kg", precio:21.99},
+{name:"Bison 5.6kg", precio:55.99},
+{name:"Bison 12.2kg", precio:89.99}
+]
+},
 
-  <option value="Taste Of The Wild Bison Venison 2kg|21.99">Taste Of The Wild Bison Venison 2kg - $21.99</option>
-  <option value="Taste Of The Wild Bison Venison 5.6kg|55.99">Taste Of The Wild Bison Venison 5.6kg - $55.99</option>
-  <option value="Taste Of The Wild Bison Venison 12.2kg|89.99">Taste Of The Wild Bison Venison 12.2kg - $89.99</option>
+{
+titulo: "Nupec",
+productos: [
+{name:"Cachorro Pequeño 2kg", precio:20.99},
+{name:"Cachorro Grande 20kg", precio:144.99},
+{name:"Adulto Pequeño 2kg", precio:18.99},
+{name:"Adulto Grande 20kg", precio:119.99},
+{name:"Senior 2kg", precio:25.99},
+{name:"Sensitive 2kg", precio:24.99}
+]
+},
 
-  <option value="Arena Van Cat 5kg|5.99">Arena Van Cat 5kg - $5.99</option>
-  <option value="Arena Van Cat 10kg|10.99">Arena Van Cat 10kg - $10.99</option>
-      <!-- TASTE OF THE WILD LATAS -->
-<option value="Taste Of The Wild Lata Perro|4.99">Taste Of The Wild Lata Perro - $4.99</option>
-<option value="Taste Of The Wild Lata Gato|4.99">Taste Of The Wild Lata Gato - $4.99</option> 
-      <!-- OPTIMO -->
-<option value="Óptimo 2kg|6.99">Óptimo 2kg - $6.99</option>
-<option value="Óptimo 25kg|72.99">Óptimo 25kg - $72.99</option>
+{
+titulo: "Diamond Naturals",
+productos: [
+{name:"Adult Lamb 2kg", precio:13.99},
+{name:"Adult Lamb 15kg", precio:77.99},
+{name:"Puppy 2kg", precio:14.99},
+{name:"Kitten 1kg", precio:8.49}
+]
+},
 
-<!-- NUCAN -->
-<option value="Nucan 2kg|7.99">Nucan 2kg - $7.99</option>
-<option value="Nucan 20kg|64.99">Nucan 20kg - $64.99</option>
+{
+titulo: "Óptimo",
+productos: [
+{name:"Óptimo 2kg", precio:6.99}
+]
+},
 
-<!-- NUCAT -->
-<option value="Nucat 1kg|3.99">Nucat 1kg - $3.99</option>
-<option value="Nucat 7kg|19.99">Nucat 7kg - $19.99</option>
+{
+titulo: "Nucan",
+productos: [
+{name:"Nucan 2kg", precio:7.99}
+]
+},
 
-<!-- SNACKS -->
-<option value="Nupec Treats Relax|6.99">Nupec Treats Relax - $6.99</option>
-<option value="Nupec Treats Dental|6.99">Nupec Treats Dental - $6.99</option>
-      
-</select>
+{
+titulo: "Snacks & Latas",
+productos: [
+{name:"Nupec Treats", precio:6.99},
+{name:"Taste Of The Wild Lata", precio:4.99}
+]
+}
 
-<button onclick="agregar()" class="bg-green-600 text-white w-full p-3 rounded-xl font-bold">➕ Agregar al carrito</button>
+];
 
-  </div>  <!-- CART -->  <div class="bg-white p-5 rounded-2xl shadow mb-6">
-    <h2 class="font-bold text-xl mb-3">🛒 Carrito</h2>
-    <div id="carrito"></div>
-    <p class="mt-3 font-bold text-lg">Total: $<span id="total">0.00</span></p>
-  </div>  <!-- CLIENT -->  <div class="bg-white p-5 rounded-2xl shadow">
-    <h2 class="font-bold text-xl mb-3">Datos del cliente</h2>
-    <input id="nombre" placeholder="Nombre" class="w-full border p-3 rounded-xl mb-2" />
-    <input id="telefono" placeholder="Teléfono" class="w-full border p-3 rounded-xl mb-2" />
-    <input id="direccion" placeholder="Dirección" class="w-full border p-3 rounded-xl mb-3" /><button onclick="enviarPedido()" class="bg-green-700 text-white w-full p-4 rounded-xl text-lg font-bold">📲 Enviar pedido por WhatsApp</button>
-
-  </div></div><script>
 let carrito = [];
 
-function agregar(){
-  const select = document.getElementById('producto').value.split('|');
-  const nombre = select[0];
-  const precio = parseFloat(select[1]);
-
-  carrito.push({nombre, precio});
-  render();
-}
-
 function render(){
-  const div = document.getElementById('carrito');
-  div.innerHTML = '';
-  let total = 0;
+let html = "";
 
-  carrito.forEach((item, i)=>{
-    total += item.precio;
-    div.innerHTML += `<div class='flex justify-between border-b py-2'>${item.nombre} <button onclick='eliminar(${i})'>❌</button></div>`;
-  });
+data.forEach(cat=>{
+html += `<h2 class="text-xl font-bold mt-6 mb-3">${cat.titulo}</h2>`;
+html += `<div class="grid grid-cols-2 gap-3">`;
 
-  document.getElementById('total').innerText = total.toFixed(2);
+cat.productos.forEach(p=>{
+html += `
+<div class="bg-white rounded-xl p-3 shadow">
+<img src="https://via.placeholder.com/150" class="rounded mb-2">
+<p class="font-semibold">${p.name}</p>
+<p class="text-green-600 font-bold">$${p.precio}</p>
+<button onclick='add("${p.name}",${p.precio})' class="mt-2 w-full bg-green-500 text-white rounded py-1">
+Agregar
+</button>
+</div>
+`;
+});
+
+html += `</div>`;
+});
+
+document.getElementById("productos").innerHTML = html;
 }
 
-function eliminar(i){
-  carrito.splice(i,1);
-  render();
+function add(nombre, precio){
+carrito.push({nombre, precio});
+actualizarTotal();
+}
+
+function actualizarTotal(){
+let total = 0;
+carrito.forEach(p=> total += p.precio);
+document.getElementById("total").innerText = total.toFixed(2);
 }
 
 function enviarPedido(){
-  if(carrito.length === 0){alert('Agrega productos'); return;}
+if(carrito.length===0){alert("Agrega productos"); return;}
 
-  let mensaje = '🐾 Pedido Kira Pet Shop\n\nProductos:\n';
-  let total = 0;
+let msg = "🐾 Pedido Kira Pet Shop\n\n";
+let total = 0;
 
-  carrito.forEach(item=>{
-    mensaje += `- ${item.nombre} ($${item.precio})\n`;
-    total += item.precio;
-  });
+carrito.forEach(p=>{
+msg += `- ${p.nombre} ($${p.precio})\n`;
+total += p.precio;
+});
 
-  mensaje += `\nTotal: $${total.toFixed(2)}\n\n`;
-  mensaje += `Nombre: ${document.getElementById('nombre').value}\n`;
-  mensaje += `Tel: ${document.getElementById('telefono').value}\n`;
-  mensaje += `Dirección: ${document.getElementById('direccion').value}`;
+msg += `\nTotal: $${total.toFixed(2)}`;
 
-  const url = `https://wa.me/50379000427?text=${encodeURIComponent(mensaje)}`;
-  window.open(url, '_blank');
+window.open(`https://wa.me/50379000427?text=${encodeURIComponent(msg)}`);
 }
-</script></body>
+
+render();
+
+</script>
+
+</body>
 </html>
